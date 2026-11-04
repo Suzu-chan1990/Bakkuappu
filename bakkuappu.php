@@ -55,14 +55,15 @@ add_action('init', function () {
         return;
     }
 
-    $puc_path = Bakkuappu_PATH . 'lib/plugin-update-checker/plugin-update-checker.php';
+    // Bundled copy of the update checker (lib/plugin-update-checker)
+    $puc_path = __DIR__ . '/lib/plugin-update-checker/plugin-update-checker.php';
     if ( ! file_exists($puc_path) ) {
-        return; 
+        return;
     }
 
     require_once $puc_path;
 
-    // Build checker
+    // Check GitHub releases of Suzu-chan1990/Bakkuappu for updates
     $updateChecker = \YahnisElsts\PluginUpdateChecker\v5\PucFactory::buildUpdateChecker(
         'https://github.com/Suzu-chan1990/Bakkuappu',
         __FILE__,
